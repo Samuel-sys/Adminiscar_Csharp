@@ -39,7 +39,6 @@ namespace Prototipo_Sistema_Adminiscar
                     }
                     else
                     {
-                        timer1.Enabled = false;
                         //tenta ver se tem algum email registrado
                         try
                         {
@@ -55,11 +54,23 @@ namespace Prototipo_Sistema_Adminiscar
 
 
                             this.Visible = false;//faz a janela de splash ficar invisivel
+                            timer1.Enabled = false;
                             Login c = new Login();// abre a janela de login do funcionario
                             c.Show();
+
+                            if (BarraDeCarregamento.Value < 100)
+                                BarraDeCarregamento.Value = BarraDeCarregamento.Value + 2;
                         }
                         catch// se der erro significa que não tem nem um funcionario cadastrado ai abre a janela de cadastro
                         {
+
+                            if (BarraDeCarregamento.Value < 100)
+                            {
+                                BarraDeCarregamento.Value = BarraDeCarregamento.Value + 2;
+                            }
+                            timer1.Enabled = false;
+
+                            this.Visible = false;//faz a janela de splash ficar invisivel
 
                             Login b = new Login();// abre a janela de login do funcionario
                             b.Show();
@@ -67,7 +78,6 @@ namespace Prototipo_Sistema_Adminiscar
                             FuncionarioCadastrarAlterar a = new FuncionarioCadastrarAlterar();
                             a.Show();
 
-                            this.Visible = false;//faz a janela de splash ficar invisivel
                         }
                     }
                 }

@@ -16,7 +16,7 @@ namespace Prototipo_Sistema_Adminiscar
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LocacaoCadastra());
+            Application.Run(new Splash());
         }
     }
 }
