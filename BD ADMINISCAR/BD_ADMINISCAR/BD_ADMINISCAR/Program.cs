@@ -46,6 +46,8 @@ namespace BD_ADMINISCAR
 
             } while (func == null);
 
+            func = "";//limpa a variavel
+
             do
             {
                 string msg = "";
