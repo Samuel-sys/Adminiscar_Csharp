@@ -8,17 +8,43 @@ namespace BD_ADMINISCAR
 {
     class Program
     {
+        //nome da DataBase do banco de dados
         static string database = "ADMINISCAR";
+
+        //instancia do servidor (local) onde esta situado o banco de dados
         static string instancia = "";
 
+
+        //metodo pricipal
         static void Main(string[] args)
         {
 
-            string func = "";
-            Console.Write("instancia:");
-            instancia = Console.ReadLine();
-            if (instancia == "" || instancia == "localhost")
-                instancia = @"localhost\SQLEXPRESS";
+            //variavel de controle de função (é responsavel por guiar o usuario no programa)
+            string func = null;
+
+            do
+            {
+                Console.Write("instancia:");
+                instancia = Console.ReadLine();
+
+                if (instancia == "" || instancia == "localhost")
+                {
+
+                    //pergunta para ter certeza se e isso que o usuairo deseja
+                    Console.WriteLine("Você realmente quer instalar o banco de dados em Localhost ?");
+                    func = Console.ReadLine();
+
+                    if (func.ToUpper() == "S")
+                        instancia = @"localhost\SQLEXPRESS";
+                }
+                else if (instancia != @"localhost\SQLEXPRESS")
+                {
+                    Console.WriteLine("Você realmente quer instalar o banco de dados em \"{0} \"?", instancia);
+                }
+                else
+                    func = "";//muda a variavel para vazio (tirando ela do estado nulo assim fazendo o programa sair do loop de repetição
+
+            } while (func == null);
 
             do
             {
@@ -69,6 +95,9 @@ namespace BD_ADMINISCAR
                 Console.WriteLine("Erro " + a.Message);
             }
         }
+        /// <summary>
+        /// Responsavel por cadastrar o banco de dados Adminiscar
+        /// </summary>
         static void cadastraBD()
         {
             try
