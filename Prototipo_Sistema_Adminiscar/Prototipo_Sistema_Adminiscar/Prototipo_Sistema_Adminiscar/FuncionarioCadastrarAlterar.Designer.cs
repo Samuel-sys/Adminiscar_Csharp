@@ -360,6 +360,7 @@
             // cbxEstado
             // 
             this.cbxEstado.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbxEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxEstado.FormattingEnabled = true;
             this.cbxEstado.Items.AddRange(new object[] {
             "AC",
@@ -389,7 +390,7 @@
             "SP",
             "SE",
             "TO"});
-            this.cbxEstado.Location = new System.Drawing.Point(414, 12);
+            this.cbxEstado.Location = new System.Drawing.Point(414, 13);
             this.cbxEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxEstado.Name = "cbxEstado";
             this.cbxEstado.Size = new System.Drawing.Size(52, 24);
@@ -917,6 +918,7 @@
             // cbxNivelAcesso
             // 
             this.cbxNivelAcesso.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.cbxNivelAcesso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxNivelAcesso.FormattingEnabled = true;
             this.cbxNivelAcesso.Items.AddRange(new object[] {
             "1",
@@ -954,6 +956,7 @@
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FuncionarioCadastrarAlterar

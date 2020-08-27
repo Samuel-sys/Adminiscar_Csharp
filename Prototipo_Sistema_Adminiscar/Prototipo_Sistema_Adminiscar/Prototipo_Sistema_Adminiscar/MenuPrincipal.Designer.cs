@@ -122,7 +122,7 @@
             this.tlpCliente.Controls.Add(this.button1, 0, 1);
             this.tlpCliente.Controls.Add(this.pictureBox6, 0, 0);
             this.tlpCliente.Location = new System.Drawing.Point(530, 4);
-            this.tlpCliente.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tlpCliente.Margin = new System.Windows.Forms.Padding(4);
             this.tlpCliente.MaximumSize = new System.Drawing.Size(189, 165);
             this.tlpCliente.Name = "tlpCliente";
             this.tlpCliente.RowCount = 2;
@@ -137,7 +137,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(108)))), ((int)(((byte)(153)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(39, 115);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 46);
             this.button1.TabIndex = 3;
@@ -152,7 +152,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
             this.pictureBox6.Location = new System.Drawing.Point(4, 4);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(181, 102);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -206,7 +206,7 @@
             this.tableLayoutPanel5.Controls.Add(this.pictureBox4, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.btVeiculo, 0, 1);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(223, 113);
-            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel5.MaximumSize = new System.Drawing.Size(189, 165);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
@@ -222,7 +222,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(4, 4);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(181, 102);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -235,7 +235,7 @@
             this.btVeiculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(108)))), ((int)(((byte)(153)))));
             this.btVeiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btVeiculo.Location = new System.Drawing.Point(14, 115);
-            this.btVeiculo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btVeiculo.Margin = new System.Windows.Forms.Padding(4);
             this.btVeiculo.Name = "btVeiculo";
             this.btVeiculo.Size = new System.Drawing.Size(161, 46);
             this.btVeiculo.TabIndex = 3;
@@ -251,7 +251,7 @@
             this.tableLayoutPanel6.Controls.Add(this.btDevolucao, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.pictureBox3, 0, 0);
             this.tableLayoutPanel6.Location = new System.Drawing.Point(837, 568);
-            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel6.MaximumSize = new System.Drawing.Size(189, 165);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
@@ -266,7 +266,7 @@
             this.btDevolucao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(108)))), ((int)(((byte)(153)))));
             this.btDevolucao.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btDevolucao.Location = new System.Drawing.Point(17, 115);
-            this.btDevolucao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btDevolucao.Margin = new System.Windows.Forms.Padding(4);
             this.btDevolucao.Name = "btDevolucao";
             this.btDevolucao.Size = new System.Drawing.Size(155, 46);
             this.btDevolucao.TabIndex = 3;
@@ -281,7 +281,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(4, 4);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(181, 102);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -297,7 +297,7 @@
             this.tableLayoutPanel7.Controls.Add(this.pictureBox5, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.btManutencao, 0, 1);
             this.tableLayoutPanel7.Location = new System.Drawing.Point(837, 113);
-            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel7.MaximumSize = new System.Drawing.Size(189, 165);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 2;
@@ -313,7 +313,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(4, 4);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(181, 102);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -326,7 +326,7 @@
             this.btManutencao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(108)))), ((int)(((byte)(153)))));
             this.btManutencao.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btManutencao.Location = new System.Drawing.Point(14, 115);
-            this.btManutencao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btManutencao.Margin = new System.Windows.Forms.Padding(4);
             this.btManutencao.Name = "btManutencao";
             this.btManutencao.Size = new System.Drawing.Size(161, 46);
             this.btManutencao.TabIndex = 3;
@@ -343,7 +343,7 @@
             this.tableLayoutPanel4.Controls.Add(this.btLocacao, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.pictureBox2, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(223, 568);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel4.MaximumSize = new System.Drawing.Size(189, 165);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
@@ -358,7 +358,7 @@
             this.btLocacao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(108)))), ((int)(((byte)(153)))));
             this.btLocacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btLocacao.Location = new System.Drawing.Point(28, 115);
-            this.btLocacao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btLocacao.Margin = new System.Windows.Forms.Padding(4);
             this.btLocacao.Name = "btLocacao";
             this.btLocacao.Size = new System.Drawing.Size(132, 46);
             this.btLocacao.TabIndex = 3;
@@ -373,7 +373,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(4, 4);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(181, 102);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -389,7 +389,7 @@
             this.tlpFuncionario.Controls.Add(this.button6, 0, 1);
             this.tlpFuncionario.Controls.Add(this.pictureBox1, 0, 0);
             this.tlpFuncionario.Location = new System.Drawing.Point(530, 648);
-            this.tlpFuncionario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tlpFuncionario.Margin = new System.Windows.Forms.Padding(4);
             this.tlpFuncionario.MaximumSize = new System.Drawing.Size(189, 165);
             this.tlpFuncionario.Name = "tlpFuncionario";
             this.tlpFuncionario.RowCount = 2;
@@ -404,18 +404,19 @@
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(108)))), ((int)(((byte)(153)))));
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.Location = new System.Drawing.Point(15, 115);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(159, 46);
             this.button6.TabIndex = 3;
             this.button6.Text = "Funcionário";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(4, 4);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(181, 102);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

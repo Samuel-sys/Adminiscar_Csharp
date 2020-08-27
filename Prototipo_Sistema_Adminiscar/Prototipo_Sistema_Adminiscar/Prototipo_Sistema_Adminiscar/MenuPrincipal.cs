@@ -92,5 +92,11 @@ namespace Prototipo_Sistema_Adminiscar
             LocacaoCadastra a = new LocacaoCadastra();
             a.Show();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            FuncionarioCadastrarAlterar a = new FuncionarioCadastrarAlterar();
+            a.Show();
+        }
     }
 }
