@@ -30,17 +30,18 @@ namespace Prototipo_Sistema_Adminiscar
             string[] campos = new string[] { "COD_ENDERECO" };
 
             //continua ate retornar o codigo do Endereço
-            for(int i =0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
             {
                 //tenta pegar o codigo do endereco
                 try
                 {
-                    ArrayList a = 
-                        Comand.Select.ArryaListFormat("SELECT * FROM ENDERECO WHERE CEP = '" 
-                        + mtxtCEP.Text + "' AND NUMERO = " + mtxtNumero.Text + " AND LOGRADOURO = '" 
-                        + txtLogradouro.Text + "' AND BAIRRO = '" + txtBairro.Text + "' AND CIDADE = '" 
+                    ArrayList a =
+                        Comand.Select.ArryaListFormat("SELECT * FROM ENDERECO WHERE CEP = '"
+                        + mtxtCEP.Text + "' AND NUMERO = " + mtxtNumero.Text + " AND LOGRADOURO = '"
+                        + txtLogradouro.Text + "' AND BAIRRO = '" + txtBairro.Text + "' AND CIDADE = '"
                         + txtCidade.Text + "' AND ESTADO = '" + cbxEstado.Text + "'", campos, connect);
 
+                    //se não retornar nem um valor esse espaço sera inexiste e então da erro e vai para o espaço catch
                     codEndereco = a[0].ToString();
 
                 }
@@ -247,8 +248,9 @@ namespace Prototipo_Sistema_Adminiscar
 
         private void atualizaDataGrid()
         {
+            //COMANDO SqlServer
             dtgCliente.DataSource = Comand.Select.DataTableFormat(
-                "SELECT C.NOME_CLIENTE AS NOME, C.CPF_CNPJ , C.CNH_CLIENTE AS CNH, E.LOGRADOURO, E.NUMERO, E.BAIRRO, E.CEP, E.CIDADE, E.ESTADO, T.TELL1 AS TELEFONE, T.TELL2 AS TELEFONE "
+                "SELECT C.NOME_CLIENTE AS NOME, C.CPF_CNPJ , C.CNH_CLIENTE AS CNH, E.LOGRADOURO, E.NUMERO, E.BAIRRO, E.CEP, E.CIDADE, E.ESTADO, T.TELL1 AS 1_TELEFONE, T.TELL2 AS 2_TELEFONE "
                 + "FROM CLIENTE AS C "
                 + "INNER JOIN ENDERECO AS E on C.COD_ENDERECO_FK = E.COD_ENDERECO "
                 + "INNER JOIN TELEFONE AS T ON C.COD_TELL_FK = T.COD_TELL ",connect);
