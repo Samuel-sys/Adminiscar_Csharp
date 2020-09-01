@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SqlServer">
-      <HintPath>..\..\Bibliotecas C#\SqlServer\SqlServer\bin\Debug\SqlServer.dll</HintPath>
+      <HintPath>..\..\SqlServer\SqlServer\bin\Debug\SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
