@@ -42,6 +42,8 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbxLocalHost = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.bgUser.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -54,7 +56,7 @@
             this.bgUser.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.bgUser.Controls.Add(this.rdtNao);
             this.bgUser.Controls.Add(this.rdtSim);
-            this.bgUser.Location = new System.Drawing.Point(17, 86);
+            this.bgUser.Location = new System.Drawing.Point(88, 141);
             this.bgUser.Name = "bgUser";
             this.bgUser.Size = new System.Drawing.Size(290, 57);
             this.bgUser.TabIndex = 28;
@@ -89,7 +91,7 @@
             // 
             this.lblSenha.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblSenha.AutoSize = true;
-            this.lblSenha.Location = new System.Drawing.Point(37, 8);
+            this.lblSenha.Location = new System.Drawing.Point(108, 8);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(49, 17);
             this.lblSenha.TabIndex = 27;
@@ -98,7 +100,7 @@
             // txtSenha
             // 
             this.txtSenha.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtSenha.Location = new System.Drawing.Point(92, 6);
+            this.txtSenha.Location = new System.Drawing.Point(163, 6);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(217, 22);
             this.txtSenha.TabIndex = 26;
@@ -107,7 +109,7 @@
             // 
             this.lblUsuario.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(29, 8);
+            this.lblUsuario.Location = new System.Drawing.Point(100, 8);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(57, 17);
             this.lblUsuario.TabIndex = 25;
@@ -116,7 +118,7 @@
             // txtUsuario
             // 
             this.txtUsuario.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtUsuario.Location = new System.Drawing.Point(92, 6);
+            this.txtUsuario.Location = new System.Drawing.Point(163, 6);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(217, 22);
             this.txtUsuario.TabIndex = 24;
@@ -125,7 +127,7 @@
             // 
             this.lblInstancia.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblInstancia.AutoSize = true;
-            this.lblInstancia.Location = new System.Drawing.Point(22, 8);
+            this.lblInstancia.Location = new System.Drawing.Point(93, 11);
             this.lblInstancia.Name = "lblInstancia";
             this.lblInstancia.Size = new System.Drawing.Size(64, 17);
             this.lblInstancia.TabIndex = 21;
@@ -134,7 +136,7 @@
             // txtInstancia
             // 
             this.txtInstancia.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtInstancia.Location = new System.Drawing.Point(92, 6);
+            this.txtInstancia.Location = new System.Drawing.Point(163, 9);
             this.txtInstancia.Name = "txtInstancia";
             this.txtInstancia.Size = new System.Drawing.Size(217, 22);
             this.txtInstancia.TabIndex = 20;
@@ -142,7 +144,7 @@
             // btCadastarBD
             // 
             this.btCadastarBD.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btCadastarBD.Location = new System.Drawing.Point(34, 267);
+            this.btCadastarBD.Location = new System.Drawing.Point(105, 322);
             this.btCadastarBD.Name = "btCadastarBD";
             this.btCadastarBD.Size = new System.Drawing.Size(255, 86);
             this.btCadastarBD.TabIndex = 29;
@@ -166,13 +168,13 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.57143F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 71.42857F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(324, 367);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(466, 457);
             this.tableLayoutPanel1.TabIndex = 30;
             // 
             // tableLayoutPanel3
@@ -187,11 +189,11 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Controls.Add(this.lblUsuario, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.txtUsuario, 2, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 153);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 208);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(318, 34);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(460, 34);
             this.tableLayoutPanel3.TabIndex = 34;
             // 
             // tableLayoutPanel2
@@ -206,11 +208,14 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.txtInstancia, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblInstancia, 1, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 43);
+            this.tableLayoutPanel2.Controls.Add(this.cbxLocalHost, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 2, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 58);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(318, 34);
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(460, 74);
             this.tableLayoutPanel2.TabIndex = 33;
             // 
             // tableLayoutPanel4
@@ -225,18 +230,39 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Controls.Add(this.txtSenha, 2, 0);
             this.tableLayoutPanel4.Controls.Add(this.lblSenha, 1, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 193);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 248);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(318, 34);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(460, 34);
             this.tableLayoutPanel4.TabIndex = 34;
+            // 
+            // cbxLocalHost
+            // 
+            this.cbxLocalHost.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.cbxLocalHost.AutoSize = true;
+            this.cbxLocalHost.Location = new System.Drawing.Point(139, 51);
+            this.cbxLocalHost.Name = "cbxLocalHost";
+            this.cbxLocalHost.Size = new System.Drawing.Size(18, 17);
+            this.cbxLocalHost.TabIndex = 22;
+            this.cbxLocalHost.UseVisualStyleBackColor = true;
+            this.cbxLocalHost.CheckedChanged += new System.EventHandler(this.cbxLocalHost_CheckedChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(163, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 17);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Localhost";
             // 
             // CadastrarBanco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 353);
+            this.ClientSize = new System.Drawing.Size(474, 443);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MinimumSize = new System.Drawing.Size(350, 400);
             this.Name = "CadastrarBanco";
@@ -270,5 +296,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.CheckBox cbxLocalHost;
+        private System.Windows.Forms.Label label1;
     }
 }

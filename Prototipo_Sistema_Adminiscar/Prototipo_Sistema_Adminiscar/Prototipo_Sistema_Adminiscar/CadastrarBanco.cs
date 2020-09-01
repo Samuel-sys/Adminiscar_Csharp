@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SqlServer;
 using System.Data.SqlClient;
@@ -37,7 +30,7 @@ namespace Prototipo_Sistema_Adminiscar
             instancia = txtInstancia.Text;//nome da dataBase
 
             //se o cliente pasar um valor nulo/vazio ou informa que e local informa que o endereço do banco e localhost
-            instancia = instancia == "localhost" ? @"localhost\SQLEXPRESS" : instancia;
+            instancia = instancia == "" || instancia == "localhost" ? @"localhost\SQLEXPRESS" : instancia;
 
             //se o cliente tiver abilitado o campo de usuario e senha registra o valor se não registra null
             usuario = rdtSim.Checked ? txtUsuario.Text : null;
@@ -53,17 +46,22 @@ namespace Prototipo_Sistema_Adminiscar
             //so executa o comando se tiver com todos os campos preenchidos
             else if (txtInstancia.Text != "" && rdtSim.Checked == true)
                 CadastraRouteDataBase();
+            else if (cbxLocalHost.Checked == true && rdtSim.Checked == true) 
+                CadastraRouteDataBase();
 
             else// se faltar algum campo a ser preenchido informa que tem que preencher todos os campos
                 MessageBox.Show("Erro preencha todos os campos!");
         }
 
-        private static void RouteDataBase(bool dataBase)
+        private static void RouteDataBase(bool database)
         {
-            //adiciona 
+            if (instancia == "" || instancia == "localhost")
+                instancia = @"localhost\SQLEXPRESS";
+
+            //adiciona a instancia
             banco = @"Data Source = " + instancia ;
 
-            if (dataBase)//se quiser conectar com a DataBase
+            if (database)//se quiser conectar com a DataBase
                 banco += "; Initial Catalog = " + dataBase;
 
             //Caso o não se de senha ou usuarioa vai se entender que e um caso de Integrated Securyt caso o contrario sera cadastrado
@@ -72,14 +70,16 @@ namespace Prototipo_Sistema_Adminiscar
 
         private void CadastraRouteDataBase()
         {
+            //coloca o endereço do Banco de dados sem a dataBase
             RouteDataBase(false);
 
             //teste de conexão
             if (Connection.ConnectionTest(banco))
             {
-
+                //coloca o endereço do Banco de dados com a dataBase Adminicar
                 RouteDataBase(true);
 
+                //Se a conexão com a DataBase não for possivel execulta esse trecho do codigo
                 if (!Connection.ConnectionTest(banco))
                 {
                     //responsavel por armazenar a respota do cliete
@@ -92,7 +92,7 @@ namespace Prototipo_Sistema_Adminiscar
 
 
                     if (r == DialogResult.Yes)//se o cliente clicar em YES (SIM) inicia o cadastro da DataBase
-                        cadastraBD();
+                        cadastraDataBase();//cadastra a DataBase
 
                     else//qualquer outra opção não cria nem uma modificação na DataBase e fecha o programa.
                     {
@@ -104,10 +104,12 @@ namespace Prototipo_Sistema_Adminiscar
                     }
                 }
 
-
+                //registra o endereço no banco em um ficheiro para uso do sistema
                 Connection.RegisterBD(instancia, "ADMINISCAR", usuario, senha);//se a conexão for um sucesso cadastra o endereço no banco
 
+                //informa o usuario do cadastro do sistema
                 MessageBox.Show("Conexão com o Banco de Dados com sucesso\nO programa sera Fechado para a alteração no sistema.","ATENÇÃO");
+                
                 //fecha a janela logo apois terminar o cadastro
                 Application.Exit();
             }
@@ -136,7 +138,7 @@ namespace Prototipo_Sistema_Adminiscar
             lblSenha.Visible = true;
         }
         
-        static void cadastraBD()
+        static void cadastraDataBase()
         {
 
             try
@@ -146,27 +148,29 @@ namespace Prototipo_Sistema_Adminiscar
                 SqlConnection conect = new SqlConnection(@"Data Source = " + instancia + "; Initial Catalog = master; Integrated Security = True");
 
                 //comando para criar a DataBase do sistema
-                SqlCommand comando = new SqlCommand("CREATE DATABASE " + dataBase, conect);
+                SqlCommand comando = new SqlCommand("CREATE DATABASE " + dataBase, conect);//(#BD1)
 
+                //tenta cadastrar a DataBase no Banco de Dados
                 try
                 {
                     conect.Open();
 
-                    comando.ExecuteNonQuery();
+                    comando.ExecuteNonQuery();//execulta o comando SqlServer #BD1
 
                     conect.Close();
                 }
                 catch (SqlException e )
                 {
-                    MessageBox.Show("Erro na conexão com o banco\nE preciso a conexão com a DataBase \" master \" " + e.Message,"ATENÇÃO");
+                    //informa um erro na criaxão da dataBase
+                    MessageBox.Show("Erro na conexão com o banco\nE preciso a conexão com a DataBase \" master \" \n\n" + e.Message,"ATENÇÃO");
                 }
 
-                
+                //faz a variavel "banco" ter o endereço completo com a DataBase Adminiscar
                 RouteDataBase(true);
 
                 conect = new SqlConnection(banco);
 
-                comando = new SqlCommand(
+                comando = new SqlCommand(/* (#BD2) */
                                     " CREATE TABLE TELEFONE( "
                                     + " COD_TELL INT PRIMARY KEY IDENTITY, "
                                     + " TELL1 VARCHAR(15) NOT NULL, "
@@ -268,20 +272,30 @@ namespace Prototipo_Sistema_Adminiscar
                                                         , conect);
                 conect.Open();
 
-                comando.ExecuteNonQuery();
+                comando.ExecuteNonQuery();//execulta o comando SqlServer #BD2
 
                 conect.Close();
 
-                Console.WriteLine("DataBase ADMINISCAR criado com sucesso");
+                //informa o usuario que o cadastro foi bem sucedida
+                MessageBox.Show("DataBase ADMINISCAR criado com sucesso","ATENÇÃO");
 
             }
             catch (SqlException a)
             {
+                //informa o usuario que o cadastro teve um erro
+                MessageBox.Show("Erro na criação do BD \n" + a.Message + "\n" + banco,"ATENÇÃO");
 
-                Console.WriteLine("Erro na criação do BD \n" + a.Message);
             }
+        }
 
+        private void cbxLocalHost_CheckedChanged(object sender, EventArgs e)
+        {
+            //deixa a area de preenchimento de instancia invisivel se for celecionado
+            lblInstancia.Visible = !cbxLocalHost.Checked;
+            txtInstancia.Visible = !cbxLocalHost.Checked;
 
+            //faz automaticamente o sistema se colocar como um Integrated Security
+            rdtSim.Checked = cbxLocalHost.Checked;
         }
     }
 }
