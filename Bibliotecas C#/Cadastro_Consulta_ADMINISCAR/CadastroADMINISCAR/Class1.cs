@@ -6,6 +6,31 @@ namespace ADMINISCAR
 {
     class Cadastra
     {
+        /// <summary>
+        /// Essa Biblioteca e para o banco de dados da empresa Adminiscar para cadastro da tabela Endereço
+        /// </summary>
+        /// <param name="CEP">
+        /// CEP varchar (10)
+        /// </param>
+        /// <param name="numero">
+        /// numero int
+        /// </param>
+        /// <param name="logradouro">
+        /// logradouro varchar (50)
+        /// </param>
+        /// <param name="bairro">
+        /// bairro varchar (50)
+        /// </param>
+        /// <param name="cidade">
+        /// cidade varchar (50)
+        /// </param>
+        /// <param name="estado">
+        /// estado varchar (2)
+        /// </param>
+        /// <param name="RouthConnect">
+        /// Rota de conexão com o banco de dados
+        /// </param>
+        /// <returns></returns>
         public bool Endereco(string CEP, string numero, string logradouro, string bairro, string cidade, string estado, string RouthConnect)
         {
             string[] campos = new string[] { "COD_ENDERECO" };
