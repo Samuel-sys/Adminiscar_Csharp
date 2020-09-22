@@ -26,61 +26,62 @@ namespace Prototipo_Sistema_Adminiscar
 
         private void btCadastarBD_Click(object sender, EventArgs e)
         {
-
             instancia = txtInstancia.Text;//nome da dataBase
 
-            //se o cliente pasar um valor nulo/vazio ou informa que e local informa que o endereço do banco e localhost
-            instancia = instancia == "" || instancia == "localhost" ? @"localhost\SQLEXPRESS" : instancia;
+            //se o cliente pasar um valor nulo/vazio ou informa que e localhost informa que o endereço do banco e localhost mesma coisa se checkedBox do LocalHost
+            instancia = instancia == "" || instancia == "localhost" || cbxLocalHost.Checked ? @"localhost\SQLEXPRESS" : instancia;
 
             //se o cliente tiver abilitado o campo de usuario e senha registra o valor se não registra null
-            usuario = rdtSim.Checked ? txtUsuario.Text : null;
+            usuario = rdtSim.Checked ? null : txtUsuario.Text;
 
             //se o cliente tiver abilitado o campo de usuario e senha registra o valor se não registra null
-            senha = rdtSim.Checked ? txtSenha.Text : null;
+            senha = rdtSim.Checked ? null : txtSenha.Text;
+
+
+            //insereindo a intancia do no endereço de conexão
+            banco = @"Data Source = " + instancia ;
+
+            //se o campo de senha e usuario estiverem nulos ele coloca como uma conexão Integrated Security
+            banco += usuario == null && senha == null ? @"; Integrated Security = True" : "; USER ID = " + usuario + "; PASSWORD = " + senha + " ;";
+
+            /*
+             NÃO SE ADICIONA A DATABASE NA ROTA DE CONEXÃO DO BANCO DE DADOS PARA TESTAR A CONEXÃO COM AINSTANCIA 
+             DEPOIS SE TESTA COM A DATABASE 
+             */
+
+            //Se o CheckedBox cbxLocalHost estiver ativo e o campo de Integrated Security estiver com o RadioButton SIM estiver ativo
+            if (cbxLocalHost.Checked == true && rdtSim.Checked == true)
+                CadastraRouteDataBase();
+
+            //Se o CheckedBox cbxLocalHost estiver ativo e os campos do USER e SENHA estiverem preenchidas
+            else if (cbxLocalHost.Checked == true && rdtSim.Checked == false && 
+                txtUsuario.Text != "" && txtSenha.Text != "")
+                CadastraRouteDataBase();
 
             //so executa o comando se tiver com todos os campos preenchidos
-            if (txtInstancia.Text != "" && rdtSim.Checked == false
+            else if (txtInstancia.Text != "" && rdtSim.Checked == false
                 && txtUsuario.Text != "" && txtSenha.Text != "")
                 CadastraRouteDataBase();
 
             //so executa o comando se tiver com todos os campos preenchidos
             else if (txtInstancia.Text != "" && rdtSim.Checked == true)
                 CadastraRouteDataBase();
-            else if (cbxLocalHost.Checked == true && rdtSim.Checked == true) 
-                CadastraRouteDataBase();
 
             else// se faltar algum campo a ser preenchido informa que tem que preencher todos os campos
                 MessageBox.Show("Erro preencha todos os campos!");
         }
-
-        private static void RouteDataBase(bool database)
-        {
-            if (instancia == "" || instancia == "localhost")
-                instancia = @"localhost\SQLEXPRESS";
-
-            //adiciona a instancia
-            banco = @"Data Source = " + instancia ;
-
-            if (database)//se quiser conectar com a DataBase
-                banco += "; Initial Catalog = " + dataBase;
-
-            //Caso o não se de senha ou usuarioa vai se entender que e um caso de Integrated Securyt caso o contrario sera cadastrado
-            banco += usuario == "" && senha == "" ? @"; Integrated Security = True" : "; USER ID = " + usuario + "; PASSWORD = " + senha + " ;";
-        }
+        
 
         private void CadastraRouteDataBase()
         {
-            //coloca o endereço do Banco de dados sem a dataBase
-            RouteDataBase(false);
 
-            //teste de conexão
+            //teste de conexão com o Banco sem o parametro da DataBase
             if (Connection.ConnectionTest(banco))
             {
-                //coloca o endereço do Banco de dados com a dataBase Adminicar
-                RouteDataBase(true);
 
-                //Se a conexão com a DataBase não for possivel execulta esse trecho do codigo
-                if (!Connection.ConnectionTest(banco))
+                //Se a conexão com a DataBase não for possivel execulta esse trecho do codigo, se for possivel cria o ficheiro 
+                //(o comando dentro do if cria o ficheiro se for um sucesso volta um valor true se não conseguir envia um valor false)
+                if (!Connection.RegisterRouteDataBase(instancia, "ADMINISCAR", usuario, senha))
                 {
                     //responsavel por armazenar a respota do cliete
                     DialogResult r;
@@ -103,9 +104,6 @@ namespace Prototipo_Sistema_Adminiscar
                         Application.Exit();
                     }
                 }
-
-                //registra o endereço no banco em um ficheiro para uso do sistema
-                Connection.RegisterBD(instancia, "ADMINISCAR", usuario, senha);//se a conexão for um sucesso cadastra o endereço no banco
 
                 //informa o usuario do cadastro do sistema
                 MessageBox.Show("Conexão com o Banco de Dados com sucesso\nO programa sera Fechado para a alteração no sistema.","ATENÇÃO");
@@ -157,18 +155,20 @@ namespace Prototipo_Sistema_Adminiscar
 
                     comando.ExecuteNonQuery();//execulta o comando SqlServer #BD1
 
-                    conect.Close();
                 }
                 catch (SqlException e )
                 {
                     //informa um erro na criaxão da dataBase
                     MessageBox.Show("Erro na conexão com o banco\nE preciso a conexão com a DataBase \" master \" \n\n" + e.Message,"ATENÇÃO");
                 }
+                finally
+                {
+                    conect.Close();
+                }
 
-                //faz a variavel "banco" ter o endereço completo com a DataBase Adminiscar
-                RouteDataBase(true);
+                Connection.RegisterRouteDataBase(instancia, "ADMINISCAR", usuario, senha);
 
-                conect = new SqlConnection(banco);
+                conect.ConnectionString = Connection.Route("ADMINISCAR") ;
 
                 comando = new SqlCommand(/* (#BD2) */
                                     " CREATE TABLE TELEFONE( "
@@ -214,9 +214,9 @@ namespace Prototipo_Sistema_Adminiscar
                                     + " COMBUSTIVEL VARCHAR(20), "
                                     + " QUILOMETRAGEM INT NOT NULL, "
                                     + " SITUACAO VARCHAR(20) NOT NULL, "
-                                    + " VALOR_DIARIO MONEY NOT NULL, "
-                                    + " VALOR_SEMANAL MONEY NOT NULL, "
-                                    + " VALOR_MENSAL MONEY NOT NULL, "
+                                    + " VALOR_DIARIO DECIMAL(8,2) NOT NULL, "
+                                    + " VALOR_SEMANAL DECIMAL(8,2) NOT NULL, "
+                                    + " VALOR_MENSAL DECIMAL(8,2) NOT NULL, "
                                     + " SOM CHAR(1) NOT NULL, "
                                     + " SOM_BT CHAR(1) NOT NULL, "
                                     + " GPS CHAR(1) NOT NULL) "
@@ -226,7 +226,7 @@ namespace Prototipo_Sistema_Adminiscar
                                     + " DATA_ENTREGA DATE NOT NULL, "
                                     + " DATA_DEVOLUCAO DATE, "
                                     + " RESOLVIDO CHAR(1), "
-                                    + " VALOR_MANUTENCAO MONEY, "
+                                    + " VALOR_MANUTENCAO DECIMAL(8,2), "
                                     + " NOME_EMP VARCHAR(50), "
                                     + " CNPJ VARCHAR(20) NOT NULL, "
                                     + " COD_TELL_FK INT NOT NULL, "
@@ -250,7 +250,7 @@ namespace Prototipo_Sistema_Adminiscar
                                     + " FOREIGN KEY(COD_CLIENTE_FK) REFERENCES CLIENTE(COD_CLIENTE)) "
                                     + " CREATE TABLE PAGAMENTO( "
                                     + " COD_PAG INT PRIMARY KEY IDENTITY, "
-                                    + " VALOR MONEY NOT NULL, "
+                                    + " VALOR DECIMAL(8,2) NOT NULL, "
                                     + " COD_CRED_FK INT, "
                                     + " COD_DEB_FK INT, "
                                     + " COD_CLIENTE_FK INT NOT NULL, "
@@ -259,7 +259,7 @@ namespace Prototipo_Sistema_Adminiscar
                                     + " FOREIGN KEY(COD_DEB_FK) REFERENCES CARTAO_DEB(COD_DEB)) "
                                     + " CREATE TABLE PEDIDO( "
                                     + " COD_PEDIDO INT PRIMARY KEY IDENTITY, "
-                                    + " VALOR MONEY NOT NULL, "
+                                    + " VALOR DECIMAL(8,2) NOT NULL, "
                                     + " TIPO_PEDIDO VARCHAR(10) NOT NULL, "
                                     + " DATA_RETIRADA DATE NOT NULL, "
                                     + " DATA_DEVOLUCAO DATE NOT NULL, "
@@ -296,6 +296,7 @@ namespace Prototipo_Sistema_Adminiscar
 
             //faz automaticamente o sistema se colocar como um Integrated Security
             rdtSim.Checked = cbxLocalHost.Checked;
+            rdtNao.Checked = !cbxLocalHost.Checked;
         }
     }
 }

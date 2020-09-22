@@ -40,10 +40,10 @@ namespace Prototipo_Sistema_Adminiscar
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
 
-            if(nivel < 2)
+            if(nivel <= 2)
             {
-                //caso o nivel do usuario (funcionario) for menos que 2
-                //tlpBanco.Visible = false;//não presenta a opção de banco
+                //caso o nivel do usuario (funcionario) for menos que nivel 2
+                tlpBanco.Visible = false;//não presenta a opção de banco
                 tlpFuncionario.Visible = false;//não presenta a opção de funcionario
             }
 
@@ -56,11 +56,6 @@ namespace Prototipo_Sistema_Adminiscar
             ArrayList a = Comand.Select.ArryaListFormat(comando, campos, connect);//(#A1)
 
             lblNomeFunc.Text = a[0].ToString();//nome do funcionario e informado para o sistema e apresentado na Label "lblNomeFunc"
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -96,6 +91,12 @@ namespace Prototipo_Sistema_Adminiscar
         private void button6_Click(object sender, EventArgs e)
         {
             FuncionarioCadastrarAlterar a = new FuncionarioCadastrarAlterar();
+            a.Show();
+        }
+
+        private void btBanco_Click(object sender, EventArgs e)
+        {
+            CadastrarBanco a = new CadastrarBanco();
             a.Show();
         }
     }

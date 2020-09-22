@@ -390,7 +390,7 @@
             "SP",
             "SE",
             "TO"});
-            this.cbxEstado.Location = new System.Drawing.Point(414, 13);
+            this.cbxEstado.Location = new System.Drawing.Point(414, 12);
             this.cbxEstado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbxEstado.Name = "cbxEstado";
             this.cbxEstado.Size = new System.Drawing.Size(52, 24);

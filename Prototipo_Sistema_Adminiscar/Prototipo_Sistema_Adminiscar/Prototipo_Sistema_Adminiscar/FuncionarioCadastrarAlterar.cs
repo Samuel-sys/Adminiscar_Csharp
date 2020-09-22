@@ -16,7 +16,7 @@ namespace Prototipo_Sistema_Adminiscar
 {    
     public partial class FuncionarioCadastrarAlterar : Form
     {
-        string connect = SqlServer.Connection.Route("ADMINISCAR");//informa o endereço de conexão com o banco de dados
+        string connect = Connection.Route("ADMINISCAR");//informa o endereço de conexão com o banco de dados
         static string retorno = "";
 
         //Variaveis estaticas de busca
@@ -177,47 +177,6 @@ namespace Prototipo_Sistema_Adminiscar
                 a = "ERRO";
             }
             return a;
-        }
-
-        private void cadastraEndereco()
-        {
-            string[] campos = new string[] { "COD_ENDERECO" };
-
-            //continua ate retornar o codigo do Endereço
-            for (int i = 0; i < 2; i++)
-            {
-                //tenta pegar o codigo do endereco
-                try
-                {
-                    ArrayList a = Comand.Select.ArryaListFormat(
-                        "SELECT * FROM ENDERECO WHERE CEP = '" + mtxtCEP.Text 
-                        + "' AND NUMERO = " + mtxtNumero.Text 
-                        + " AND LOGRADOURO = '" + txtLogradouro.Text 
-                        + "' AND BAIRRO = '" + txtBairro.Text 
-                        + "' AND CIDADE = '" + txtCidade.Text 
-                        + "' AND ESTADO = '" + cbxEstado.Text + "'"
-                        , campos, connect);
-
-                    codEndereco = a[0].ToString();
-
-                }
-                catch (Exception)
-                {   //pegando os registros
-                    string logradouro = txtLogradouro.Text;
-                    string numero = mtxtNumero.Text;
-                    string bairro = txtBairro.Text;
-                    string cidade = txtCidade.Text;
-                    string estado = cbxEstado.Text;
-                    string CEP = mtxtCEP.Text;
-                    //criando a string de comando
-                    string comando = "INSERT INTO ENDERECO (LOGRADOURO, NUMERO, BAIRRO, CEP, CIDADE, ESTADO) VALUES ("
-                    + "'" + logradouro + "'," + numero + ",'" + bairro + "','" + CEP + "','" + cidade + "','" + estado + "')";
-
-                    //inserção dos dados
-                    Comand.Insert(comando,connect);
-
-                }
-            }
         }
 
         private void cadastraTelefone()

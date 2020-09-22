@@ -62,6 +62,8 @@
     <Compile Include="ClienteConsultaDeleta.Designer.cs">
       <DependentUpon>ClienteConsultaDeleta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controler\Endereco\cadastroEndereco.cs" />
+    <Compile Include="Controler\Endereco\consultaEndereco.cs" />
     <Compile Include="LocacaoConsultaDeleta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +82,9 @@
     <Compile Include="LocacaoDevolucao.Designer.cs">
       <DependentUpon>LocacaoDevolucao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Endereco.cs" />
+    <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

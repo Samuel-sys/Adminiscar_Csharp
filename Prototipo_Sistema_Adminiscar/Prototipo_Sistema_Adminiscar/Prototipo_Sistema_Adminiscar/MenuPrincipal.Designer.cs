@@ -32,9 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuPrincipal));
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblHora = new System.Windows.Forms.Label();
-            this.tlpCliente = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblNomeFunc = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,13 +47,17 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btLocacao = new System.Windows.Forms.Button();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tlpCliente = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.tlpFuncionario = new System.Windows.Forms.TableLayoutPanel();
             this.button6 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tlpBanco = new System.Windows.Forms.TableLayoutPanel();
+            this.btBanco = new System.Windows.Forms.Button();
+            this.pbxBanco = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tlpCliente.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -66,8 +67,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.tlpCliente.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.tlpFuncionario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tlpBanco.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxBanco)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel2
@@ -79,85 +84,40 @@
             this.tableLayoutPanel2.BackgroundImage = global::Prototipo_Sistema_Adminiscar.Properties.Resources.Logo_Cliente;
             this.tableLayoutPanel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33332F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel2.Controls.Add(this.lblHora, 2, 3);
-            this.tableLayoutPanel2.Controls.Add(this.tlpCliente, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel1, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel6, 2, 2);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel7, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.tlpFuncionario, 1, 2);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel2.Controls.Add(this.tlpFuncionario, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tlpCliente, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tlpBanco, 2, 1);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(9, 9);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.48742F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.48742F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.02516F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 39F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1251, 857);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.31313F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.36689F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.04922F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.060606F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1226, 894);
             this.tableLayoutPanel2.TabIndex = 15;
             // 
             // lblHora
             // 
-            this.lblHora.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblHora.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblHora.AutoSize = true;
             this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHora.ForeColor = System.Drawing.Color.Black;
-            this.lblHora.Location = new System.Drawing.Point(935, 817);
+            this.lblHora.Location = new System.Drawing.Point(914, 853);
             this.lblHora.Name = "lblHora";
             this.lblHora.Size = new System.Drawing.Size(214, 25);
             this.lblHora.TabIndex = 17;
             this.lblHora.Text = "31/12/2020 23:59:59";
-            // 
-            // tlpCliente
-            // 
-            this.tlpCliente.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.tlpCliente.BackColor = System.Drawing.Color.Transparent;
-            this.tlpCliente.ColumnCount = 1;
-            this.tlpCliente.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpCliente.Controls.Add(this.button1, 0, 1);
-            this.tlpCliente.Controls.Add(this.pictureBox6, 0, 0);
-            this.tlpCliente.Location = new System.Drawing.Point(530, 4);
-            this.tlpCliente.Margin = new System.Windows.Forms.Padding(4);
-            this.tlpCliente.MaximumSize = new System.Drawing.Size(189, 165);
-            this.tlpCliente.Name = "tlpCliente";
-            this.tlpCliente.RowCount = 2;
-            this.tlpCliente.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tlpCliente.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
-            this.tlpCliente.Size = new System.Drawing.Size(189, 165);
-            this.tlpCliente.TabIndex = 15;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(108)))), ((int)(((byte)(153)))));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(39, 115);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 46);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Clientes";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(4, 4);
-            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(181, 102);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox6.TabIndex = 4;
-            this.pictureBox6.TabStop = false;
             // 
             // tableLayoutPanel1
             // 
@@ -169,19 +129,19 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.lblNomeFunc, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 819);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 840);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(410, 36);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(402, 52);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
             // lblNomeFunc
             // 
             this.lblNomeFunc.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblNomeFunc.AutoSize = true;
-            this.lblNomeFunc.Location = new System.Drawing.Point(76, 9);
+            this.lblNomeFunc.Location = new System.Drawing.Point(76, 17);
             this.lblNomeFunc.Name = "lblNomeFunc";
             this.lblNomeFunc.Size = new System.Drawing.Size(145, 17);
             this.lblNomeFunc.TabIndex = 1;
@@ -191,7 +151,7 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 9);
+            this.label1.Location = new System.Drawing.Point(5, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 17);
             this.label1.TabIndex = 0;
@@ -205,7 +165,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel5.Controls.Add(this.pictureBox4, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.btVeiculo, 0, 1);
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(223, 113);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(215, 111);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel5.MaximumSize = new System.Drawing.Size(189, 165);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
@@ -250,7 +210,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel6.Controls.Add(this.btDevolucao, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.pictureBox3, 0, 0);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(837, 568);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(820, 627);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel6.MaximumSize = new System.Drawing.Size(189, 165);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
@@ -296,7 +256,7 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.Controls.Add(this.pictureBox5, 0, 0);
             this.tableLayoutPanel7.Controls.Add(this.btManutencao, 0, 1);
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(837, 113);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(820, 111);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel7.MaximumSize = new System.Drawing.Size(189, 165);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
@@ -342,7 +302,7 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Controls.Add(this.btLocacao, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.pictureBox2, 0, 0);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(223, 568);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(215, 627);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel4.MaximumSize = new System.Drawing.Size(189, 165);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -380,15 +340,62 @@
             this.pictureBox2.TabIndex = 4;
             this.pictureBox2.TabStop = false;
             // 
+            // tlpCliente
+            // 
+            this.tlpCliente.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tlpCliente.BackColor = System.Drawing.Color.Transparent;
+            this.tlpCliente.ColumnCount = 1;
+            this.tlpCliente.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpCliente.Controls.Add(this.button1, 0, 1);
+            this.tlpCliente.Controls.Add(this.pictureBox6, 0, 0);
+            this.tlpCliente.Location = new System.Drawing.Point(517, 57);
+            this.tlpCliente.Margin = new System.Windows.Forms.Padding(4);
+            this.tlpCliente.MaximumSize = new System.Drawing.Size(189, 165);
+            this.tlpCliente.Name = "tlpCliente";
+            this.tlpCliente.RowCount = 2;
+            this.tlpCliente.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tlpCliente.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tlpCliente.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpCliente.Size = new System.Drawing.Size(189, 165);
+            this.tlpCliente.TabIndex = 15;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(108)))), ((int)(((byte)(153)))));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(39, 115);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 46);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Clientes";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(4, 4);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(181, 102);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 4;
+            this.pictureBox6.TabStop = false;
+            // 
             // tlpFuncionario
             // 
-            this.tlpFuncionario.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.tlpFuncionario.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tlpFuncionario.BackColor = System.Drawing.Color.Transparent;
             this.tlpFuncionario.ColumnCount = 1;
             this.tlpFuncionario.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpFuncionario.Controls.Add(this.button6, 0, 1);
             this.tlpFuncionario.Controls.Add(this.pictureBox1, 0, 0);
-            this.tlpFuncionario.Location = new System.Drawing.Point(530, 648);
+            this.tlpFuncionario.Location = new System.Drawing.Point(109, 369);
             this.tlpFuncionario.Margin = new System.Windows.Forms.Padding(4);
             this.tlpFuncionario.MaximumSize = new System.Drawing.Size(189, 165);
             this.tlpFuncionario.Name = "tlpFuncionario";
@@ -429,13 +436,57 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // tlpBanco
+            // 
+            this.tlpBanco.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tlpBanco.BackColor = System.Drawing.Color.Transparent;
+            this.tlpBanco.ColumnCount = 1;
+            this.tlpBanco.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpBanco.Controls.Add(this.btBanco, 0, 1);
+            this.tlpBanco.Controls.Add(this.pbxBanco, 0, 0);
+            this.tlpBanco.Location = new System.Drawing.Point(926, 369);
+            this.tlpBanco.Margin = new System.Windows.Forms.Padding(4);
+            this.tlpBanco.MaximumSize = new System.Drawing.Size(189, 165);
+            this.tlpBanco.Name = "tlpBanco";
+            this.tlpBanco.RowCount = 2;
+            this.tlpBanco.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tlpBanco.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tlpBanco.Size = new System.Drawing.Size(189, 165);
+            this.tlpBanco.TabIndex = 19;
+            this.tlpBanco.Visible = false;
+            // 
+            // btBanco
+            // 
+            this.btBanco.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btBanco.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(108)))), ((int)(((byte)(153)))));
+            this.btBanco.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btBanco.Location = new System.Drawing.Point(39, 115);
+            this.btBanco.Margin = new System.Windows.Forms.Padding(4);
+            this.btBanco.Name = "btBanco";
+            this.btBanco.Size = new System.Drawing.Size(111, 46);
+            this.btBanco.TabIndex = 3;
+            this.btBanco.Text = "Banco de Dados";
+            this.btBanco.UseVisualStyleBackColor = false;
+            this.btBanco.Click += new System.EventHandler(this.btBanco_Click);
+            // 
+            // pbxBanco
+            // 
+            this.pbxBanco.Image = ((System.Drawing.Image)(resources.GetObject("pbxBanco.Image")));
+            this.pbxBanco.Location = new System.Drawing.Point(4, 4);
+            this.pbxBanco.Margin = new System.Windows.Forms.Padding(4);
+            this.pbxBanco.Name = "pbxBanco";
+            this.pbxBanco.Size = new System.Drawing.Size(181, 102);
+            this.pbxBanco.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxBanco.TabIndex = 4;
+            this.pbxBanco.TabStop = false;
+            // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(1248, 922);
+            this.ClientSize = new System.Drawing.Size(1244, 912);
             this.Controls.Add(this.tableLayoutPanel2);
             this.DoubleBuffered = true;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -446,8 +497,6 @@
             this.Load += new System.EventHandler(this.MenuPrincipal_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            this.tlpCliente.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -458,8 +507,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.tlpCliente.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.tlpFuncionario.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tlpBanco.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxBanco)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -489,5 +542,8 @@
         private System.Windows.Forms.TableLayoutPanel tlpFuncionario;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TableLayoutPanel tlpBanco;
+        private System.Windows.Forms.Button btBanco;
+        private System.Windows.Forms.PictureBox pbxBanco;
     }
 }
