@@ -1,209 +1,237 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using SqlServer;
+using Prototipo_Sistema_Adminiscar.Controler;
+using Prototipo_Sistema_Adminiscar.Models;
 
 namespace Prototipo_Sistema_Adminiscar
-{    
+{
     public partial class FuncionarioCadastrarAlterar : Form
     {
         string connect = Connection.Route("ADMINISCAR");//informa o endereço de conexão com o banco de dados
-        static string retorno = "";
 
-        //Variaveis estaticas de busca
-        static string codTell, codEndereco, codFunc;
+        /*ENDERECO*/
+        Endereco end;
 
-        private void consultaLogin(string cod_func)
+        private Endereco pooEndereco()
         {
-            //busca os campos do endereco do Login
-            try
-            {
-                //Colunas da tabela Login_Sistema
-                string[] campos = new string[] { "EMAIL", "SENHA", "NIVEL_ACESSO" };
+            //preenchendo o Objeto Endereco
+            Endereco endereco = new Endereco() {
+            end_logradouro = txtLogradouro.Text,
+            end_numero = int.Parse(mtxtNumero.Text),
+            end_bairro = txtBairro.Text,
+            end_CEP = mtxtCEP.Text,
+            end_cidade = txtCidade.Text,
+            end_estado = cbxEstado.Text
+            };
 
-                //confirma se existe um 
-                ArrayList d = Comand.Select.ArryaListFormat(
-                    "SELECT * FROM LOGIN_SISTEMA WHERE COD_FUNC_FK = " + cod_func,
-                    campos, connect);
-
-                //colocando os dados no sistema fisico
-                txtEmail.Text = d[0].ToString();
-                txtSenha.Text = d[1].ToString();
-                cbxNivelAcesso.Text = d[2].ToString();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("ERRO ao buscar os dados do Login do FUNCIONÁRIO");
-            }
+            return endereco;
+        }
+        private void EnderecoPreencheForm(Endereco endereco)
+        {
+            txtLogradouro.Text = endereco.end_logradouro;
+            mtxtNumero.Text = endereco.end_numero.ToString();
+            txtBairro.Text = endereco.end_bairro;
+            mtxtCEP.Text = endereco.end_CEP;
+            txtCidade.Text = endereco.end_cidade;
+            cbxEstado.Text = endereco.end_estado;
         }
 
-        private void consultaEndereco(string cod_endereco)
+        /*TELEFONE*/
+        Telefone tel;
+
+        private Telefone pooTelefone()
         {
-            //busca os campos do endereco do Funcionario
-            try
+            //objeto a ser retornado
+            Telefone retorno = new Telefone();
+
+            //se o usuario preencher os 2 campos ele cadastra os 2 campos
+            if (mtxtTell2.MaskCompleted == true)
             {
-                //Colunas da tabela Endereco
-                string[] camposEdereco = new string[] { "LOGRADOURO", "NUMERO", "BAIRRO", "CEP", "CIDADE", "ESTADO" };
-
-                ArrayList c = Comand.Select.ArryaListFormat(
-                    "SELECT * FROM ENDERECO WHERE COD_ENDERECO = " + cod_endereco 
-                    , camposEdereco, connect);
-
-                //colocando os dados no sistema fisico
-                txtLogradouro.Text = c[0].ToString();
-                mtxtNumero.Text = c[1].ToString();
-                txtBairro.Text = c[2].ToString();
-                mtxtCEP.Text = c[3].ToString();
-                txtCidade.Text = c[4].ToString();
-                cbxEstado.Text = c[5].ToString();
-
+                retorno.tell1 = mtxtTell1.Text;
+                retorno.tell2 = mtxtTell2.Text;
             }
-            catch (Exception)
+            //se não cadastra apenas 1 telefone
+            else
             {
-                MessageBox.Show("ERRO ao buscar os dados do endereço do FUNCIONÁRIO");
-                    throw;
-
+                retorno.tell1 = mtxtTell1.Text;
             }
+
+            return retorno;//retorna o objeto
         }
 
-        private void consultaTelefone(string cod_tell)
+        private void TelefonePreencheForm(Telefone tell)
         {
-            //busca os campos do telefone do Funcionario
-            try
-            {
-                //Colunas da tabela Telefone
-                string[] camposTelefone = new string[] { "TELL1", "TELL2" };
+            mtxtTell1.Text = tell.tell1.ToString();
+            mtxtTell2.Text = tell.tell2.ToString();
 
-                //comando SQL Select Registrando os dados na ArrayList "b" (telefone)
-                ArrayList b = Comand.Select.ArryaListFormat(
-                    "SELECT * FROM TELEFONE WHERE COD_TELL = " + cod_tell
-                    , camposTelefone, connect);
-
-                //ira adapitar conforme a quantidade de caracteres o MaskBox
-                if (b[0].ToString().Length == 14)
-                    rbtFixo1.Checked = true;
-                else
-                    rbtCELL1.Checked = true;
-
-                //colocando os dados no sistema fisico
-                mtxtTell1.Text = b[0].ToString();
-                try
-                {
-
-                    //ira adapitar conforme a quantidade de caracteres o MaskBox
-                    if (b[1].ToString().Length == 14)
-                        rbtFixo2.Checked = true;
-                    else
-                        rbtCELL2.Checked = true;
-
-                    //colocando os dados no sistema fisico
-                    mtxtTell2.Text = b[1].ToString();
-                }
-                catch { }//telefone 2 e opcional caso o campo esteja vazio da erro 
-
-            }
-            catch (Exception)
-            {
-                //Caso os telefones não possua registro
-                MessageBox.Show("ERRO ao buscar os dados do telefone do FUNCIONÁRIO");
-            }
         }
 
-        private string cadastraLogin()
+        /*LOGIN*/
+        Login_sistema login;
+
+        private Login_sistema pooLogin()
         {
-            //Colunas da tabela Login_Sistema que teram que retornar os valores para o programa
-            string[] campos = new string[] { "EMAIL" };
-
-            try
+            Login_sistema retorno = new Login_sistema()
             {
-                ArrayList a = Comand.Select.ArryaListFormat(
-                    "SELECT * FROM LOGIN_SISTEMA WHERE EMAIL = '" + txtEmail + "'"
-                    , campos, connect);
-                a[0].ToString();//se esse espaço da ArrayList retorna erro
-                MessageBox.Show("EMAIL DE LOGIN JÁ CADASTRADO");
-                return "ERRO";
-            }
-            catch (Exception)
-            {
-                for (int i = 0; i < 1; i++)
-                {
+                email = txtEmail.Text,
+                senha = txtSenha.Text,
+                nivel_acesso = int.Parse(cbxNivelAcesso.Text)
+                // o codigo do funcionario e colocado apois o cadastro do funcionario na class FuncionarioControl
+            };
 
-                    try
-                    {
-                        ArrayList a = Comand.Select.ArryaListFormat(
-                            "SELECT * FROM LOGIN_SISTEMA WHERE EMAIL = '" + txtEmail + "'"
-                            , campos, connect);
-                        a[0].ToString();
-                        retorno = "OK";
-                    }
-                    catch (Exception)
-                    {
-                        retorno = ConfirmaSenha();
-                    }
-                }
-            }
             return retorno;
         }
 
-        string ConfirmaSenha()
+        private void LoginPreenchimentoForm(Login_sistema login)
         {
-            string a;
-            if (txtSenha.Text == txtConfirmaSenha.Text)
-            {
-                string email = txtEmail.Text;
-                string senha = txtConfirmaSenha.Text;
-                string nivelAcesso = cbxNivelAcesso.Text;
-
-                string comando = "INSERT INTO LOGIN_SISTEMA(EMAIL, SENHA, NIVEL_ACESSO, COD_FUNC_FK) " +
-                    "VALUES('" + email + "','" + senha + "'," + nivelAcesso + "," + codFunc + ")";
-                Comand.Insert(comando, connect);
-                MessageBox.Show("Cadastro de Login Realizado com sucesso");
-                a = "OK";
-            }
-            else
-            {
-                MessageBox.Show("SENHAS INCOMPATÍVEIS");
-                txtSenha.Text = "";
-                txtConfirmaSenha.Text = "";
-                a = "ERRO";
-            }
-            return a;
+            //Preenche os campos do sistema fisico
+            txtEmail.Text = login.email;
+            txtSenha.Text = login.senha;
+            txtConfirmaSenha.Text = login.senha;
+            cbxNivelAcesso.Text = login.nivel_acesso.ToString();
         }
 
-        private void cadastraTelefone()
+        /*FUNCIONARIO*/
+        Funcionario func;
+
+        private Funcionario pooFuncionario()
         {
-
-            for (int i = 0; i < 2; i++)
+            Funcionario retorno = new Funcionario()
             {
-                try
+                nome_func = txtNome.Text,
+                cpf_func =  mtxtCPF.Text,
+                cnh_func =  mtxtCNH.Text,
+                // cod_tell, cod_endereco e o cod_func seram preenchidos dentro das class de controle respectivo a seu devido objeto
+            };
+
+            return retorno;
+        }
+
+        private void FuncionarioPreenchimentoForm(Funcionario func)
+        {
+            txtNome.Text = func.nome_func;
+            mtxtCPF.Text = func.cpf_func.ToString();
+            mtxtCNH.Text = func.cnh_func.ToString();
+        }
+
+        void Clear()
+        {
+            //endereco
+            txtLogradouro.Text = "";
+            mtxtNumero.Text = "";
+            txtBairro.Text = "";
+            mtxtCEP.Text = "";
+            txtCidade.Text = "";
+            cbxEstado.Text = "";
+
+            //func
+            txtNome.Text = "";
+            mtxtCPF.Text = "";
+            mtxtCNH.Text = "";
+
+            //tell
+            mtxtTell1.Text = "";
+            mtxtTell2.Text = "";
+
+            txtEmail.Text = "";
+            txtSenha.Text = "";
+            txtConfirmaSenha.Text = "";
+            cbxNivelAcesso.Text = "";
+
+        }
+
+        //Bt Cadastrar
+        private void btCadastrar_Click(object sender, EventArgs e)
+        {
+            if (tudoPreenchido())
+            {
+                end = pooEndereco(); //ENDEREÇO
+                tel = pooTelefone(); //TELEFONE
+                login = pooLogin(); //LOGIN / EMAIL
+                func = pooFuncionario(); //FUNCIONARIO
+
+                if(FuncionarioADO.cadastroFunc(func, end, tel, login))
                 {
-                    string[] campos = new string[] { "COD_TELL" };
-
-                    //o campo do telefone 2 e opcional então se ele quiser pode cadastra apenas 1 telefone
-                    string comandoSelect = mtxtTell2.MaskCompleted == true ? "SELECT * FROM TELEFONE WHERE TELL1 = '" + mtxtTell1.Text + "' AND TELL2 = '" + mtxtTell2.Text + "'" : "SELECT * FROM TELEFONE WHERE TELL1 = '" + mtxtTell1.Text + "' AND TELL2 is null";
-
-                    ArrayList a = Comand.Select.ArryaListFormat(comandoSelect, campos, connect);
-
-                    codTell = a[0].ToString();
-                }
-                catch (Exception)
-                {
-                    //o campo do telefone 2 e opcional então se ele quiser pode cadastra apenas 1 telefone
-                    string comandoInsert = mtxtTell2.MaskCompleted == true ? "INSERT INTO TELEFONE (TELL1, TELL2) VALUES ('" + mtxtTell1.Text + "', '" + mtxtTell2.Text + "')" : "INSERT INTO TELEFONE (TELL1) VALUES ('" + mtxtTell1.Text + "')";
-
-                    Comand.Insert(comandoInsert, connect);
-
+                    atualizaDataGrid();
+                    Clear();
                 }
             }
+            else
+                MessageBox.Show("Preencha todos os campos!", "ATENÇÃO");
+        }
+
+        //informa se o form esta todo preenchido
+        private bool tudoPreenchido()
+        {
+            return txtNome.Text != "" && mtxtCPF.Text != ""
+                && mtxtCNH.Text != "" && cbxNivelAcesso.Text != ""
+                && mtxtTell1.MaskCompleted == true
+                && txtLogradouro.Text != "" && mtxtNumero.Text != ""
+                && txtBairro.Text != "" && txtCidade.Text != ""
+                && cbxEstado.Text != "" && mtxtCEP.MaskCompleted == true;
+        }
+
+        private void btPesquisaEmail_Click(object sender, EventArgs e)
+        {
+            var login = LoginADO.consultaLogin(txtEmail.Text);
+
+            try
+            {
+                LoginPreenchimentoForm(login);
+
+                var func = FuncionarioADO.consultaCodFunc(login.cod_func_FK);
+
+                FuncionarioPreenchimentoForm(func);
+
+                var tell = TelefoneADO.consultaCodTel(func.cod_tell_fk);
+
+                TelefonePreencheForm(tell);
+
+
+                var endereco = EnderecoADO.consultaCodEndereco(func.cod_endereco_fk);
+
+                EnderecoPreencheForm(endereco);
+
+            }
+            catch (Exception)
+            {
+                Clear();
+                MessageBox.Show("Login não encontrado");
+                
+            }
+        }
+
+
+
+        //alterar ainda não foi feito
+        private void btAlterar_Click(object sender, EventArgs e)
+        {
+            if (tudoPreenchido())
+            {
+                var func = pooFuncionario();
+                var endereco = pooEndereco();
+                var tel = pooTelefone();
+                var login = pooLogin();
+
+                if (Comand.Select.BoolFormat("select * from FUNCIONARIO WHERE CPF_FUNC = '" + func.cpf_func + "'", connect))
+                {
+                    if(FuncionarioADO.atualizaFunc(func, endereco, tel, login))
+                    {
+                        MessageBox.Show("Dados do Funcionario atualizados com sucesso", "Atenção");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro na atualização", "Atenção");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Não existe nenhum funcionário cadastrado com esse CPF para ser atualizado");
+                }
+            }
+           
+
         }
 
         public FuncionarioCadastrarAlterar()
@@ -235,33 +263,29 @@ namespace Prototipo_Sistema_Adminiscar
 
         private void btPesquisaCPF_Click(object sender, EventArgs e)
         {
+            var func = FuncionarioADO.consultaCPF(mtxtCPF.Text);
 
-            //busca os dados do Funcionario
             try
             {
-                //Colunas do funcionario
-                string[] campos = new string[] { "NOME_FUNC", "CPF_FUNC", "CNH_FUNC", "COD_TELL_FK", "COD_ENDERECO_FK", "COD_FUNC" };
+                FuncionarioPreenchimentoForm(func);
 
-                //comando SQL Select Registrando os dados na ArrayList "a" (funcionario)
-                ArrayList a = Comand.Select.ArryaListFormat(
-                    "SELECT * FROM FUNCIONARIO WHERE CPF_FUNC = '" + mtxtCPF.Text + "'"
-                    , campos, connect);
+                var endereco = EnderecoADO.consultaCodEndereco(func.cod_endereco_fk);
 
-                txtNome.Text = a[0].ToString();
-                mtxtCPF.Text = a[1].ToString();
-                mtxtCNH.Text = a[2].ToString();
+                EnderecoPreencheForm(endereco);
 
-                //metodos para preencher os campos (Telefone, Endereco, Login)
-                consultaTelefone(a[3].ToString());
-                consultaEndereco(a[4].ToString());
-                consultaLogin(a[5].ToString());
+                var tell = TelefoneADO.consultaCodTel(func.cod_tell_fk);
 
+                TelefonePreencheForm(tell);
+
+                var login = LoginADO.consultaCodFunc(func.func_cod);
+
+                LoginPreenchimentoForm(login);
 
             }
-            catch (Exception)
+            catch 
             {
-                //informa que não a retorno dos dados do funcionario
-                MessageBox.Show("CPF não cadastrado", "ATEÇÃO");
+                MessageBox.Show("CPF não cadastrado");
+                Clear();
             }
         }
 
@@ -293,89 +317,6 @@ namespace Prototipo_Sistema_Adminiscar
             mtxtTell2.Text = "";
         }
 
-        private void btPesquisaEmail_Click(object sender, EventArgs e)
-        {
-
-            string[] campos = new string[] { "SENHA", "NIVEL_ACESSO", "COD_FUNC_FK"};
-
-            ArrayList a = Comand.Select.ArryaListFormat(
-                "SELECT * FROM LOGIN_SISTEMA WHERE EMAIL = '" + txtEmail.Text + "'"
-                , campos, connect);
-            try
-            {
-                //Preenche os campos do sistema fisico
-                txtSenha.Text = a[0].ToString();
-                cbxNivelAcesso.Text = a[1].ToString();
-
-                //Colunas do funcionario
-                string[] campo_funcionario = new string[] { "COD_ENDERECO_FK", "COD_TELL_FK", "NOME_FUNC", "CPF_FUNC", "CNH_FUNC" };
-
-                //comando SQL Select Registrando os dados na ArrayList "a" (funcionario)
-                ArrayList b = Comand.Select.ArryaListFormat(
-                    "SELECT * FROM FUNCIONARIO WHERE COD_FUNC = " + a[2]
-                    , campo_funcionario, connect);
-
-
-                //metodos para preencher os campos (Telefone, Endereco)
-                consultaEndereco(b[0].ToString());
-                consultaTelefone(b[1].ToString());
-
-                //Preenche os campos do sistema fisico
-                txtNome.Text = b[2].ToString();
-                mtxtCPF.Text = b[3].ToString();
-                mtxtCNH.Text = b[4].ToString();
-
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Login não encontrado");
-            }
-        }
-
-        private void btCadastrar_Click(object sender, EventArgs e)
-        {
-            if (txtNome.Text != "" && mtxtCPF.Text != ""
-                && mtxtCNH.Text != ""
-                && mtxtTell1.MaskCompleted == true
-                && txtLogradouro.Text != "" && mtxtNumero.Text != ""
-                && txtBairro.Text != "" && txtCidade.Text != ""
-                && cbxEstado.Text != "" && mtxtCEP.MaskCompleted == true)
-            {
-                string a = Comand.Select.StringFormat(
-                    "SELECT * FROM FUNCIONARIO"
-                    , "COD_FUNC",
-                    connect);
-
-                cadastraEndereco();
-                cadastraTelefone();
-                cadastrarFunc();
-                cadastraLogin();
-                atualizaDataGrid();
-            }
-            else
-                MessageBox.Show("Preencha todos os campos!", "ATENÇÃO");
-        }
-
-        private void btAlterar_Click(object sender, EventArgs e)
-        {
-
-            if (txtNome.Text != "" && mtxtCPF.Text != ""
-                && mtxtCNH.Text != ""
-                && mtxtTell1.MaskCompleted == true
-                && txtLogradouro.Text != "" && mtxtNumero.Text != ""
-                && txtBairro.Text != "" && txtCidade.Text != ""
-                && cbxEstado.Text != "" && mtxtCEP.MaskCompleted == true)
-            {
-                cadastraEndereco();
-                cadastraTelefone();
-                cadastrarFunc();
-                cadastraLogin();
-                atualizaDataGrid();
-            }
-            else
-                MessageBox.Show("Preencha todos os campos!", "ATENÇÃO");
-
-        }
 
         private void mtxtNumero_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -387,28 +328,6 @@ namespace Prototipo_Sistema_Adminiscar
         {
             //formato de apresentação do horario/data
             lblHora.Text = DateTime.Now.ToString("dd/MM/yyyy   HH:mm:ss");
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Login a = new Login();
-            a.Show();
-            MenuPrincipal b = new MenuPrincipal();
-            b.Close();
-            this.Close();
-        }
-
-        private void cadastrarFunc()
-        {
-            string comando = "INSERT INTO FUNCIONARIO(NOME_FUNC, CPF_FUNC, CNH_FUNC, COD_TELL_FK, COD_ENDERECO_FK)" +
-                "VALUES('" + txtNome.Text + "','" + mtxtCPF.Text + "','" + mtxtCNH.Text + "'," + codTell + "," + codEndereco +")";
-
-            Comand.Insert(comando, connect);
-
-            string cod_func = Comand.Select.StringFormat(
-                "SELECT * FROM FUNCIONARIO WHERE CPF_FUNC ='" + mtxtCPF.Text + "'"
-                , "COD_FUNC", connect);
-            codFunc = cod_func;
         }
 
     }

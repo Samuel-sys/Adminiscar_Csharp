@@ -40,11 +40,16 @@ namespace Prototipo_Sistema_Adminiscar
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
 
-            if(nivel <= 2)
+            if(nivel < 2)
             {
                 //caso o nivel do usuario (funcionario) for menos que nivel 2
                 tlpBanco.Visible = false;//não presenta a opção de banco
                 tlpFuncionario.Visible = false;//não presenta a opção de funcionario
+            }
+            else
+            {
+                tlpBanco.Visible = true;
+                tlpFuncionario.Visible = true;
             }
 
             string[] campos = new string[] { "NOME_FUNC" };//nome dos campos que iram retonar os dados #A1
