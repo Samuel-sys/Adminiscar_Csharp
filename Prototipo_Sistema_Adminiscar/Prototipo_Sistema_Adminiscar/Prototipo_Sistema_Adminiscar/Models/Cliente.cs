@@ -2,17 +2,17 @@
 {
     class Cliente
     {
-        public int COD_CLIENTE { get; set; }
+        public int cod_cliente { get; set; }
 
-        public string NOME_CLIENTE { get; set; }
+        public string nome_cliente { get; set; }
 
-        public string CPF_CNPJ { get; set; }
+        public string cpf_cnpj { get; set; }
 
-        public string CNH_CLIENTE { get; set; }
+        public string cnh_cliente { get; set; }
 
-        public int COD_TELL { get; set; }
+        public int cod_tell_fk { get; set; }
 
-        public int COD_ENDERECO { get; set; }
+        public int cod_endereco_fk { get; set; }
 
     }
 }

@@ -11,6 +11,63 @@ namespace Prototipo_Sistema_Adminiscar.Controler
     {
         static string connect = Connection.Route("ADMINISCAR");
 
+        static public Funcionario consultaCodFunc(int cod_func)
+        {
+            string[] campo = new string[] { "COD_ENDERECO_FK", "COD_TELL_FK", "NOME_FUNC", "CPF_FUNC", "CNH_FUNC" };
+
+            //comando SQL Select Registrando os dados na ArrayList "a" (funcionario)
+            ArrayList func = Comand.Select.ArryaListFormat(
+                "SELECT * FROM FUNCIONARIO WHERE COD_FUNC = " + cod_func
+                , campo, connect);
+
+            try
+            {
+                return new Funcionario()
+                {
+                    cod_endereco_fk = int.Parse(func[0].ToString()),
+                    cod_tell_fk = int.Parse(func[1].ToString()),
+                    nome_func = func[2].ToString(),
+                    cpf_func = func[3].ToString(),
+                    cnh_func = func[4].ToString(),
+                    func_cod = cod_func,
+
+                };
+            }
+            catch 
+            {
+
+                return null;
+            }
+        }
+
+        static internal Funcionario consultaCPF(string cpf)
+        {
+            string[] campo = new string[] { "COD_ENDERECO_FK", "COD_TELL_FK", "NOME_FUNC", "COD_FUNC", "CNH_FUNC" };
+
+            //comando SQL Select Registrando os dados na ArrayList "a" (funcionario)
+            ArrayList func = Comand.Select.ArryaListFormat(
+                "SELECT * FROM FUNCIONARIO WHERE CPF_FUNC = '" + cpf + "'"
+                , campo, connect);
+
+            try
+            {
+                return new Funcionario()
+                {
+                    cod_endereco_fk = int.Parse(func[0].ToString()),
+                    cod_tell_fk = int.Parse(func[1].ToString()),
+                    nome_func = func[2].ToString(),
+                    func_cod = int.Parse(func[3].ToString()),
+                    cnh_func = func[4].ToString(),
+                    cpf_func = cpf,
+
+                };
+            }
+            catch
+            {
+
+                return null;
+            }
+        }
 
         static public bool cadastroFunc(Funcionario func, Endereco end, Telefone tell, Login_sistema login)
         {
@@ -74,64 +131,6 @@ namespace Prototipo_Sistema_Adminiscar.Controler
                 MessageBox.Show("Funcionario cadastrado com sucesso");
 
             return erros;
-        }
-
-        static public Funcionario consultaCodFunc(int cod_func)
-        {
-            string[] campo = new string[] { "COD_ENDERECO_FK", "COD_TELL_FK", "NOME_FUNC", "CPF_FUNC", "CNH_FUNC" };
-
-            //comando SQL Select Registrando os dados na ArrayList "a" (funcionario)
-            ArrayList func = Comand.Select.ArryaListFormat(
-                "SELECT * FROM FUNCIONARIO WHERE COD_FUNC = " + cod_func
-                , campo, connect);
-
-            try
-            {
-                return new Funcionario()
-                {
-                    cod_endereco_fk = int.Parse(func[0].ToString()),
-                    cod_tell_fk = int.Parse(func[1].ToString()),
-                    nome_func = func[2].ToString(),
-                    cpf_func = func[3].ToString(),
-                    cnh_func = func[4].ToString(),
-                    func_cod = cod_func,
-
-                };
-            }
-            catch 
-            {
-
-                return null;
-            }
-        }
-
-        static internal Funcionario consultaCPF(string cpf)
-        {
-            string[] campo = new string[] { "COD_ENDERECO_FK", "COD_TELL_FK", "NOME_FUNC", "COD_FUNC", "CNH_FUNC" };
-
-            //comando SQL Select Registrando os dados na ArrayList "a" (funcionario)
-            ArrayList func = Comand.Select.ArryaListFormat(
-                "SELECT * FROM FUNCIONARIO WHERE CPF_FUNC = '" + cpf + "'"
-                , campo, connect);
-
-            try
-            {
-                return new Funcionario()
-                {
-                    cod_endereco_fk = int.Parse(func[0].ToString()),
-                    cod_tell_fk = int.Parse(func[1].ToString()),
-                    nome_func = func[2].ToString(),
-                    func_cod = int.Parse(func[3].ToString()),
-                    cnh_func = func[4].ToString(),
-                    cpf_func = cpf,
-
-                };
-            }
-            catch
-            {
-
-                return null;
-            }
         }
 
         static internal bool atualizaFunc(Funcionario func, Endereco endereco, Telefone tel, Login_sistema login)

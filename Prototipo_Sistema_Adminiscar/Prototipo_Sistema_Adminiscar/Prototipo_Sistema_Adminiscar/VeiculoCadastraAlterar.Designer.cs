@@ -533,7 +533,6 @@
             this.txtPlaca.Name = "txtPlaca";
             this.txtPlaca.Size = new System.Drawing.Size(85, 22);
             this.txtPlaca.TabIndex = 5;
-            this.txtPlaca.Leave += new System.EventHandler(this.txtPlaca_Leave);
             // 
             // cbxNomeCar
             // 

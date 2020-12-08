@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SqlServer;
+using System;
 using System.Collections;
-using SqlServer;
+using System.Windows.Forms;
 
 namespace Prototipo_Sistema_Adminiscar
 {
@@ -983,6 +976,11 @@ namespace Prototipo_Sistema_Adminiscar
             //aceita até 30 caracteres e a tecla backspace
             if (txtPlaca.Text.Length == 30 && !(e.KeyChar == (char)Keys.Back))
                 e.Handled = true;
+        }
+
+        private void pbxCarro_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -224,6 +224,7 @@
             this.pbxCarro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxCarro.TabIndex = 6;
             this.pbxCarro.TabStop = false;
+            this.pbxCarro.Click += new System.EventHandler(this.pbxCarro_Click);
             // 
             // tableLayoutPanel4
             // 

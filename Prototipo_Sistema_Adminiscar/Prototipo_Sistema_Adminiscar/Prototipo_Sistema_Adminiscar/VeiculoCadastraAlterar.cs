@@ -1,4 +1,6 @@
-﻿using SqlServer;
+﻿using Prototipo_Sistema_Adminiscar.Controler;
+using Prototipo_Sistema_Adminiscar.Models;
+using SqlServer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,11 +17,33 @@ namespace Prototipo_Sistema_Adminiscar
     public partial class VeiculoCadastraAlterar : Form
     {
 
-        string connect = Connection.Route("ADMINISCAR");
-
         public VeiculoCadastraAlterar()
         {
             InitializeComponent();
+        }
+
+        string connect = Connection.Route("ADMINISCAR");
+
+        private Carro pooCarro()
+        {
+
+            return new Carro()
+            {
+                NOME_CAR = cbxNomeCar.Text,
+                PLACA = txtPlaca.Text,
+                RENAVAM = txtRenavam.Text,
+                MODELO = cbxModelo.Text,
+                CATEGORIA = cbxCategoria.Text,
+                COMBUSTIVEL = cbxCombustivel.Text,
+                QUILOMETRAGEM = 0,
+                SITUACAO = "PATIO",
+                VALOR_DIARIO = double.Parse(mtxtValDiario.Text.Replace(".", "").Replace(",", ".").Replace("R$ ", "")),
+                VALOR_SEMANAL = double.Parse(mtxtValSemanal.Text.Replace(".", "").Replace(",", ".").Replace("R$ ", "")),
+                VALOR_MENSAL = double.Parse(mtxtValMensal.Text.Replace(".", "").Replace(",", ".").Replace("R$ ", "")),
+                SOM = char.Parse(lblSOM.Text),
+                SOM_BT = char.Parse(lblSOMBT.Text),
+                GPS = char.Parse(lblGPS.Text),
+            };
         }
 
         private void Veiculo_Load(object sender, EventArgs e)
@@ -30,10 +54,12 @@ namespace Prototipo_Sistema_Adminiscar
             mtxtValMensal.Text = String.Format("{0:c}", 0.00);
 
         }
+
         void atualizaDataGrid()
         {
             dtgCarro.DataSource = Comand.Select.DataTableFormat("SELECT * FROM CARRO", connect);
         }
+
         private void cbxCategoria_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (cbxCategoria.Text)
@@ -87,38 +113,45 @@ namespace Prototipo_Sistema_Adminiscar
             }
         }
 
-        private void ConsultaCarro(bool mensagem)
-        {
-            string[] campos = new string[] { "CATEGORIA", "NOME_CAR", "RENAVAM", "COMBUSTIVEL", "MODELO", "SOM", "SOM_BT", "GPS", "VALOR_DIARIO", "VALOR_SEMANAL", "VALOR_MENSAL" };
-
-            ArrayList a = Comand.Select.ArryaListFormat("SELECT * FROM CARRO where PLACA = '" + txtPlaca.Text + "'", campos, connect);
-
-            //tenta puxar os dados do banco e colocar nos campos
-            try
-            {
-                cbxCategoria.Text = a[0].ToString();     //Categoria
-                cbxNomeCar.Text = a[1].ToString();       //Nome
-                txtRenavam.Text = a[2].ToString();       //Renavam
-                cbxCombustivel.Text = a[3].ToString();   //Combustivel
-                cbxModelo.Text = a[4].ToString();        //Modelo do Carro
-                lblSOM.Text = a[5].ToString();           //SOM
-                lblSOMBT.Text = a[6].ToString();         // SOM BT
-                lblGPS.Text = a[7].ToString();           //GPS
-                mtxtValDiario.Text = String.Format("{0:c)", a[8].ToString());    //Valor Diario
-                mtxtValSemanal.Text = String.Format("{0:c)", a[9].ToString());   //Valor Semanal
-                mtxtValMensal.Text = String.Format("{0:c)", a[10].ToString());   //Valor Mensal
-            }
-            //se não encontrar um parametro o programa uma Mensagem informando ao usuario
-            catch (Exception)
-            {
-                if (mensagem == true)
-                    MessageBox.Show("Placa de carro não encontrada", "ATENÇÃO");
-            }
-        }
+        
 
         private void btPesquisaCarro_Click(object sender, EventArgs e)
         {
-            ConsultaCarro(true);
+            if(txtPlaca.Text == "" || txtPlaca.Text == null)
+            {
+                MessageBox.Show("Campo de pesquisa vazio");
+            }
+            else
+            {
+                var car = CarroADO.ConsultaCarroPlaca(txtPlaca.Text);
+
+                MessageBox.Show(car.ToString());
+                if(car == null)
+                {
+                    MessageBox.Show("Nada encontrado");
+                }else
+                {
+
+                preencheCarro(car);
+                }
+            }
+        }
+
+        private void preencheCarro(Carro carro)
+        {
+            cbxNomeCar.Text = carro.NOME_CAR.ToString();
+            txtPlaca.Text = carro.PLACA.ToString();
+            txtRenavam.Text = carro.RENAVAM.ToString();
+            cbxModelo.Text = carro.MODELO.ToString();
+            cbxCategoria.Text = carro.CATEGORIA.ToString();
+            cbxCombustivel.Text = carro.COMBUSTIVEL.ToString();
+            mtxtValDiario.Text = carro.VALOR_DIARIO.ToString();
+            mtxtValSemanal.Text = carro.VALOR_SEMANAL.ToString();
+            mtxtValMensal.Text = carro.VALOR_MENSAL.ToString();
+            lblSOM.Text = carro.SOM.ToString();
+            lblSOMBT.Text = carro.SOM_BT.ToString();
+            lblGPS.Text = carro.GPS.ToString();
+
         }
 
         private void btLimpar_Click(object sender, EventArgs e)
@@ -145,24 +178,25 @@ namespace Prototipo_Sistema_Adminiscar
 
         private void btCadastrar_Click(object sender, EventArgs e)
         {
-            if(cbxCategoria.Text != "" && cbxNomeCar.Text != "" 
-            && txtPlaca.Text != "" && cbxCombustivel.Text != ""
-            && cbxModelo.Text != "" && txtRenavam.Text != "" 
-            && mtxtValDiario.Text.Replace("R$ ","") != ""
-            && mtxtValSemanal.Text.Replace("R$ ","") != ""
-            && mtxtValMensal.Text.Replace("R$ ","") != "")
-            Comand.Insert("INSERT INTO CARRO (NOME_CAR, PLACA, "
-                + "RENAVAM, MODELO, CATEGORIA, COMBUSTIVEL, QUILOMETRAGEM, "
-                +"SITUACAO, VALOR_DIARIO, VALOR_SEMANAL, VALOR_MENSAL, SOM, SOM_BT, GPS) values('" 
-                + cbxNomeCar.Text + "','" + txtPlaca.Text + "','" + txtRenavam.Text + "','" 
-                + cbxModelo.Text + "','" + cbxCategoria.Text + "','" + cbxCombustivel.Text 
-                + "', 0, 'PATIO','" 
-                + mtxtValDiario.Text.Replace(".", "").Replace(",", ".").Replace("R$ ", "") 
-                + "','" + mtxtValSemanal.Text.Replace(".", "").Replace(",", ".").Replace("R$ ", "") + "','" 
-                + mtxtValMensal.Text.Replace(".", "").Replace(",", ".").Replace("R$ ","") 
-                + "','" + lblSOM.Text + "','" + lblSOMBT.Text + "','" + lblGPS.Text + "' )", connect);
+            if (tudoPreenchido())
+            {
+                var car = pooCarro();
+
+                CarroADO.cadastraCarro(car);
+            }
+            
             atualizaDataGrid();
 
+        }
+
+        private bool tudoPreenchido()
+        {
+            return cbxCategoria.Text != "" && cbxNomeCar.Text != ""
+            && txtPlaca.Text != "" && cbxCombustivel.Text != ""
+            && cbxModelo.Text != "" && txtRenavam.Text != ""
+            && mtxtValDiario.Text.Replace("R$ ", "") != ""
+            && mtxtValSemanal.Text.Replace("R$ ", "") != ""
+            && mtxtValMensal.Text.Replace("R$ ", "") != "";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -185,19 +219,20 @@ namespace Prototipo_Sistema_Adminiscar
 
         private void btCadastra_Click(object sender, EventArgs e)
         {
-            if (cbxCategoria.Text != "" && cbxNomeCar.Text != ""
-            && txtPlaca.Text != "" && cbxCombustivel.Text != ""
-            && cbxModelo.Text != "" && txtRenavam.Text != ""
-            && mtxtValDiario.Text.Replace("R$ ", "") != ""
-            && mtxtValSemanal.Text.Replace("R$ ", "") != ""
-            && mtxtValMensal.Text.Replace("R$ ", "") != "")
+            if (tudoPreenchido())
             {
-                string a = Comand.Select.StringFormat("SELECT * FROM CARRO WHERE PLACA = '" + txtPlaca.Text + "'", "COD_CAR", connect);
 
-                if (a != "")
+                if (Comand.Select.BoolFormat("SELECT * FROM CARRO WHERE PLACA = '" + txtPlaca.Text + "'", connect))
                 {
-                    string comando = "UPDATE CARRO SET NOME_CAR ='" + cbxNomeCar.Text + "', RENAVAM ='" + txtRenavam.Text + "', MODELO ='" + cbxModelo.Text + "', COMBUSTIVEL ='" + cbxCombustivel.Text + "', VALOR_DIARIO ='" + mtxtValDiario.Text.Replace(".", "").Replace(",", ".").Replace("R$ ", "") + "', VALOR_SEMANAL ='" + mtxtValSemanal.Text.Replace(".", "").Replace(",", ".").Replace("R$ ", "") + "', VALOR_MENSAL ='" + mtxtValMensal.Text.Replace(".", "").Replace(",", ".").Replace("R$ ", "") + "' WHERE PLACA ='" + txtPlaca.Text + "'";
-                    Comand.Update(comando, connect);
+                    if (CarroADO.UpdateCarro(pooCarro()))
+                    {
+                        MessageBox.Show("Carro Atualizado no BD com sucesso");
+                        atualizaDataGrid();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao atualizado o carro");
+                    }
                 }
                 else
                 {
@@ -210,10 +245,7 @@ namespace Prototipo_Sistema_Adminiscar
             }
         }
 
-        private void txtPlaca_Leave(object sender, EventArgs e)
-        {
-            ConsultaCarro(false);
-        }
+        
         private void mtxtValDiario_Leave(object sender, EventArgs e)
         {
             if(mtxtValDiario.Text != "")

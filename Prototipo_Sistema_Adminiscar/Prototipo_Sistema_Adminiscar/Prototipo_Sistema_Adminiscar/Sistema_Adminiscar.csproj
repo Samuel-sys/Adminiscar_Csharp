@@ -62,6 +62,8 @@
     <Compile Include="ClienteConsultaDeleta.Designer.cs">
       <DependentUpon>ClienteConsultaDeleta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controler\CarroADO.cs" />
+    <Compile Include="Controler\ClienteADO.cs" />
     <Compile Include="Controler\EnderecoADO.cs" />
     <Compile Include="Controler\FuncionarioADO.cs" />
     <Compile Include="Controler\LoginADO.cs" />
@@ -197,6 +199,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Compile Include="Models\Carro.cs" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
